@@ -6,6 +6,13 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/1. 문자찾기" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/2. 대소문자 변환" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/3. 문장 속 단어" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/10. 가장 짧은 문자거리" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/4. 단어 뒤집기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/5. 특정 문자 뒤집기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/6. 중복문자제거" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/7. 회문 문자열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/8. 유효한 팰린드롬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/String(문자열)/9. 숫자만 추출" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
