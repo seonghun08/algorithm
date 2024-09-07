@@ -25,6 +25,10 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/7. 점수계산" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/8. 등수 구하기" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/9. 격자판 최대합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/alorithm" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/메모장" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/11. 임시반장 정하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/12. 멘토링" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
