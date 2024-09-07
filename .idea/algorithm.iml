@@ -29,6 +29,12 @@
       <sourceFolder url="file://$MODULE_DIR$/메모장" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/11. 임시반장 정하기" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/2. Array(1, 2차원 배열)/12. 멘토링" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/1. 두 배열 합치기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/2. 공통원소 구하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/3. 최대 매출" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/4. 연속 부분수열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/5. 연속된 자연수의 합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/3. Two pointers, Sliding window/6. 최대 길이 연속부분수열" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
