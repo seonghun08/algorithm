@@ -38,7 +38,9 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/1. 학급 회장" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/2. 아나그램" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/3. 매출액의 종류" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/4. 연속 부분수열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/4. 모든 아나그램 찾기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/4. HashMap, TreeSet/5. K번째 큰 수" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/1. 올바른 괄호" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
