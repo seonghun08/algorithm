@@ -43,6 +43,8 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/1. 올바른 괄호" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/2. 괄호문자제거" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/3. 크레인 인형뽑기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/4. 후위식 연산" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/5. Stack, Queue/5. 쇠막대기" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
