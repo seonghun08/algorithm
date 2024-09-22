@@ -28,7 +28,6 @@ public class Main0508 {
     }
 
     static class Person {
-
         int id;
         int priority;
 
