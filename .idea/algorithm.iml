@@ -51,6 +51,7 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/1. 선택 정렬" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/2. 버블 정렬" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/3. 삽입 정렬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/4. Least Recently Used" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

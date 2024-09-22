@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main0604 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
@@ -21,20 +21,18 @@ public class Main {
             for (int i = 0; i < s; i++) {
                 if (n == cache[i]) {
                     pos = i;
-                    break;
                 }
             }
-            if (pos == -1) {
-                for (int i = s - 1; i >= 1; i--) {
-                    cache[i] = cache[i - 1];
-                }
-            } else {
-                for (int i = pos; i >= 1; i--) {
-                    cache[i] = cache[i - 1];
-                }
-            }
-            cache[0] = n;
+            LRU(pos, n, cache);
         }
         return cache;
+    }
+
+    public static void LRU(int pos, int n, int[] cache) {
+        int idx = pos == -1 ? cache.length - 1 : pos;
+        for (int i = idx; i >= 1; i--) {
+            cache[i] = cache[i - 1];
+        }
+        cache[0] = n;
     }
 }
