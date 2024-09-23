@@ -55,6 +55,8 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/5. 중복 확인" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/6. 장난꾸러기" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/7. 좌표 정렬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/8. 이분검색" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/6. Sorting, Searching/9. 뮤직비디오(결정알고리즘)" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
