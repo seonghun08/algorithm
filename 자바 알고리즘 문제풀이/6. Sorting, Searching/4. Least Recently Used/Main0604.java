@@ -14,25 +14,27 @@ public class Main0604 {
         }
     }
 
-    public static int[] solution(int s, int[] arr) {
-        int[] cache = new int[s];
+    public static int[] solution(int size, int[] arr) {
+        int[] cache = new int[size];
         for (int n : arr) {
             int pos = -1;
-            for (int i = 0; i < s; i++) {
+            for (int i = 0; i < size; i++) {
                 if (n == cache[i]) {
                     pos = i;
+                    break;
                 }
             }
-            LRU(pos, n, cache);
+            if (pos == -1) {
+                for (int i = size - 1; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            } else {
+                for (int i = pos; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            }
+            cache[0] = n;
         }
         return cache;
-    }
-
-    public static void LRU(int pos, int n, int[] cache) {
-        int idx = pos == -1 ? cache.length - 1 : pos;
-        for (int i = idx; i >= 1; i--) {
-            cache[i] = cache[i - 1];
-        }
-        cache[0] = n;
     }
 }
