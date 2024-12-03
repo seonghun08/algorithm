@@ -2,11 +2,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
         // 빠른 입력을 위한 BufferedReader
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine()); // 배열 크기 입력
@@ -46,5 +49,26 @@ public class Main {
             bw.write(a + " ");
         }
         bw.flush();
+    }
+
+    // time out (1 sec)
+    public static List<Integer> fail(int n, int[] arr) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int pos = arr[i];
+            int rs = 0;
+            for (int j = i + 1; j < n; j++) {
+                if (pos < arr[j]) {
+                    rs = arr[j];
+                    break;
+                }
+            }
+            if (rs != 0) {
+                list.add(rs);
+            } else {
+                list.add(-1);
+            }
+        }
+        return list;
     }
 }
