@@ -9,19 +9,23 @@ public class Main {
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             String line;
             while ((line = br.readLine()) != null) {
-                int[] arr = new int[4];
-                for (char ch : line.toCharArray()) {
-                    if (Character.isLowerCase(ch)) {
-                        arr[0]++;
-                    } else if (Character.isUpperCase(ch)) {
-                        arr[1]++;
-                    } else if (Character.isDigit(ch)) {
-                        arr[2]++;
-                    } else {
-                        arr[3]++;
-                    }
-                }
-                for (int a : arr) {
+                int[] counts = line.chars()
+                        .map(ch -> {
+                            if (Character.isLowerCase(ch)) return 0;
+                            if (Character.isUpperCase(ch)) return 1;
+                            if (Character.isDigit(ch)) return 2;
+                            return 3;
+                        })
+                        // Supplier: 결과를 담을 "빈 그릇"을 준비
+                        // Accumulator: 스트림의 각 데이터를 "빈 그릇"에 추가
+                        // Combiner: 병렬 스트림 처리 시, 여러 "빈 그릇"을 하나로 합침
+                        .collect(
+                                () -> new int[4],
+                                (arr, idx) -> arr[idx]++,
+                                (arr1, arr2) -> {
+                                    for (int i = 0; i < 4; i++) arr1[i] += arr2[i];
+                                });
+                for (int a : counts) {
                     bw.write(a + " ");
                 }
                 bw.write("\n");

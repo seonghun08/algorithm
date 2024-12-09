@@ -7,13 +7,9 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (char ch : s.toCharArray()) {
             if (Character.isUpperCase(ch)) {
-                if ((ch += 13) > 90) {
-                    ch = (char) ('A' + (ch - 'Z' - 1));
-                }
+                ch = (char) ('A' + (ch - 'A' + 13) % 26); // 대문자 ROT13
             } else if (Character.isLowerCase(ch)) {
-                if ((ch += 13) > 122) {
-                    ch = (char) ('a' + (ch - 'z' - 1));
-                }
+                ch = (char) ('a' + (ch - 'a' + 13) % 26); // 소문자 ROT13
             }
             sb.append(ch);
         }
