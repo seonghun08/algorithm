@@ -1,13 +1,26 @@
+package structure;
+
 import java.util.NoSuchElementException;
 
 /**
- * Queue 직접 구현하기
+ * structure.Queue 직접 구현하기
+ *
  * @param <T>
  */
 public class Queue<T> {
 
     private Node<T> first;
     private Node<T> last;
+
+    static class Node<T> {
+        private final T data;
+        private Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+        }
+    }
+
     private int size;
 
     public Queue() {
@@ -30,7 +43,7 @@ public class Queue<T> {
 
     public T pop() {
         if (first == null) {
-            throw new NoSuchElementException("Queue is empty");
+            throw new NoSuchElementException("structure.Queue is empty");
         }
         T data = first.data;
         first = first.next; // 첫 노드를 다음 노드로 변경
@@ -43,7 +56,7 @@ public class Queue<T> {
 
     public T peek() {
         if (first == null) {
-            throw new NoSuchElementException("Queue is empty");
+            throw new NoSuchElementException("structure.Queue is empty");
         }
         return first.data;
     }
@@ -54,14 +67,5 @@ public class Queue<T> {
 
     public int size() {
         return size;
-    }
-
-    static class Node<T> {
-        private final T data;
-        private Node<T> next;
-
-        public Node(T data) {
-            this.data = data;
-        }
     }
 }
