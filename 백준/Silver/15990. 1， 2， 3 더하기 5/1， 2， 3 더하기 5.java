@@ -8,10 +8,6 @@ public class Main {
     static long [][] dp = new long[100_001][4];
     static long mod = 1_000_000_009;
 
-    static {
-        dp[1][1] = dp[2][2] = dp[3][1] = dp[3][2] = dp[3][3] = 1;
-    }
-
     public static void main(String[] args) throws Exception {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))
@@ -22,8 +18,9 @@ public class Main {
             for (int i = 0; i < t; i++) {
                 arr[i] = Integer.parseInt(br.readLine());
             }
-
+            
             StringBuilder sb = new StringBuilder();
+            dp[1][1] = dp[2][2] = dp[3][1] = dp[3][2] = dp[3][3] = 1;
             int i = 4;
 
             for (int n : arr) {
