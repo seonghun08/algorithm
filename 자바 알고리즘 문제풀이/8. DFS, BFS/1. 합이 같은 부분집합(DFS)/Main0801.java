@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main0706 {
+public class Main0801 {
 
     static int n, total;
     static boolean flag;
@@ -19,6 +19,22 @@ public class Main0706 {
         }
     }
 
+    public static void dp(int n, int[] arr) {
+        if (total / 2 != 0) {
+            flag = false;
+            return;
+        }
+        int target = total / 2;
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        for (int num : arr) {
+            for (int j = target; j >= num; j--) {
+                dp[j] = dp[j] || dp[j - num];
+            }
+        }
+        flag = dp[target];
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
@@ -28,6 +44,7 @@ public class Main0706 {
             total += arr[i];
         }
         dfs(0, 0, arr);
+        // dp(n, arr);
         System.out.print(flag ? "YES" : "NO");
     }
 }
