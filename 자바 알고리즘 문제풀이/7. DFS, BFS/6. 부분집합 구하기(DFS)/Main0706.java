@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main0706 {
 
     static int n, total;
-    static boolean flag = false;
+    static boolean flag;
 
     public static void dfs(int len, int sum, int[] arr) {
         if (flag) {
             return;
         }
         if (len == n) {
-            if ((total - sum) == sum) {
+            if (total / 2 == sum) {
                 flag = true;
             }
         } else {
