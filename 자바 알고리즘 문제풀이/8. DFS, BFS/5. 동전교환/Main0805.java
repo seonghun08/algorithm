@@ -1,66 +1,62 @@
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Main0805 {
+
+    static int n, m;
+    static Integer[] coins;
+    static int answer = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
+        n = sc.nextInt();
+        coins = new Integer[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            coins[i] = sc.nextInt();
         }
-        int m = sc.nextInt();
-        // System.out.println(solution1(n, m, arr));
-        System.out.println(solution2(n, m, arr));
+        m = sc.nextInt();
+
+        // 1. dfs 풀이
+        Arrays.sort(coins, Collections.reverseOrder());
+        dfs(0, 0);
+        System.out.println(answer);
+
+        // 2. dp 풀이
+        answer = dp();
+        System.out.println(answer);
     }
 
-    // dp
-    public static int solution1(int n, int m, int[] arr) {
+    public static void dfs(int size, int sum) {
+        if (size >= answer) {
+            return;
+        }
+        if (sum > m) {
+            return;
+        }
+        if (sum == m) {
+            answer = Math.min(answer, size);
+        } else {
+            for (int i = 0; i < n; i++) {
+                dfs(size + 1, sum + coins[i]);
+            }
+        }
+    }
+
+    public static int dp() {
         int[] dp = new int[m + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
-        for (int i : arr) {
+        for (int i : coins) {
             dp[i] = 1;
         }
         for (int i = 1; i <= m; i++) {
             for (int j = 0; j < n; j++) {
-                if (i > arr[j]) {
-                    dp[i] = Math.min(dp[i], dp[i - arr[j]] + 1);
+                if (i > coins[j]) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                    // System.out.printf("%d = min(dp[%d], dp[%d-coins[%d]]+1);\n", dp[i], i, i, j);
                 }
             }
         }
-        return dp[m];
-    }
-
-    // dfs
-    static Integer[] intArr;
-    static int min = Integer.MAX_VALUE;
-    static int nn, mm;
-
-    public static int solution2(int n, int m, int[] arr) {
-        nn = n;
-        mm = m;
-        intArr = Arrays.stream(arr)
-                .boxed()
-                .toArray(Integer[]::new);
-        Arrays.sort(intArr, Collections.reverseOrder());
-        dfs(0, 0);
-        return min != Integer.MAX_VALUE ? min : -1;
-    }
-
-    public static void dfs(int size, int sum) {
-        if (sum > mm) {
-            return;
-        }
-        if (size >= min) {
-            return;
-        }
-        if (sum == mm) {
-            min = Math.min(min, size);
-        } else {
-            for (int i = 0; i < nn; i++) {
-                dfs(size + 1, sum + intArr[i]);
-            }
-        }
+        return dp[m] != Integer.MAX_VALUE ? dp[m] : -1;
     }
 }
