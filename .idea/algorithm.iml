@@ -63,6 +63,8 @@
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/8. DFS, BFS/3. 최대점수 구하기(DFS)" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/8. DFS, BFS/4. 중복순열" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/8. DFS, BFS/5. 동전교환" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/8. DFS, BFS/6. 순열 구하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/자바 알고리즘 문제풀이/8. DFS, BFS/7. 조합수(메모이제이션)" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
