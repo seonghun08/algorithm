@@ -19,6 +19,7 @@ public class Main0807 {
         if (n == r || r == 0) {
             return 1;
         } else {
+            // [n]C[r] = [n-1]C[r-1] + [n-1]C[r]
             return dy[n][r] = dfs(n - 1, r) + dfs(n - 1, r - 1);
         }
     }
