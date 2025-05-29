@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.*;
 
 public class Main {
@@ -12,19 +15,18 @@ public class Main {
                 arr[i] = Integer.parseInt(st.nextToken());
             }
             Answer answer = solution(n, arr);
-            bw.write(answer.maxLength + "");
-            bw.newLine();
-            for (int a : answer.lis) {
-                bw.write(a + " ");
+            bw.write(answer.maxLength + "\n");
+            for (int i : answer.lis) {
+                bw.write(i + " ");
             }
             bw.flush();
         }
     }
-    
+
     public static Answer solution(int n, int[] arr) {
         Answer answer = new Answer();
         int[] dp = new int[n];
-        int[] prev = new int[n]; // 이전 원소 추적 index 배열
+        int[] prev = new int[n]; // 수열 이전 인덱스 추적 배열
         int lastIdx = 0;
         for (int i = 0; i < n; i++) {
             dp[i] = 1;
@@ -32,14 +34,14 @@ public class Main {
         }
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (arr[i] > arr[j] && dp[j] + 1 > dp[i]) {
+                if (arr[i] > arr[j] && dp[i] < dp[j] + 1) {
                     dp[i] = dp[j] + 1;
-                    prev[i] = j; // dp index > 이전 index 저장
+                    prev[i] = j; // 변경 시 dp와 함께 이전 인덱스 초기화
                 }
             }
             if (dp[i] > answer.maxLength) {
                 answer.maxLength = dp[i];
-                lastIdx = i;
+                lastIdx = i; // 최대 값일 때 마지막 인덱스 초기화
             }
         }
         while (lastIdx != -1) {
@@ -49,9 +51,9 @@ public class Main {
         Collections.reverse(answer.lis);
         return answer;
     }
-    
+
     static class Answer {
-        int maxLength = 1;
+        int maxLength = 1; // default 1
         List<Integer> lis = new ArrayList<>();
     }
 }
