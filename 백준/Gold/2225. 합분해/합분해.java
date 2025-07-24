@@ -15,9 +15,9 @@ public class Main {
     public static long solution(int n, int k) {
         long[][] dp = new long[k + 1][n + 1];
 
-        Arrays.fill(dp[1], 1); // dp[1][1 ~ n] = 0
+        Arrays.fill(dp[1], 1); // dp[1][1 ~ n] = 1
         for (int i = 1; i <= k; i++) {
-            dp[i][0] = 1; // dp[1 ~ k][0] = 0
+            dp[i][0] = 1; // dp[1 ~ k][0] = 1
         }
 
         for (int i = 2; i <= k; i++) {
