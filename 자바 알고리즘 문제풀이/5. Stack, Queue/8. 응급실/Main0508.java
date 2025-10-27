@@ -3,17 +3,28 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Main0508 {
-
-    public static int solution(int n, int m, int[] arr) {
-        int answer = 0;
-        Queue<Person> q = new LinkedList<>();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int answer = solution(m, arr);
+        System.out.println(answer);
+    }
+
+    public static int solution(int m, int[] arr) {
+        Queue<Person> q = new LinkedList<>();
+        int answer = 0;
+        for (int i = 0; i < arr.length; i++) {
             q.offer(new Person(i, arr[i]));
         }
         while (!q.isEmpty()) {
             Person p1 = q.poll();
             for (Person p2 : q) {
-                if (p2.priority > p1.priority) {
+                if (p2.score > p1.score) {
                     q.offer(p1);
                     p1 = null;
                     break;
@@ -24,27 +35,15 @@ public class Main0508 {
                 if (p1.id == m) return answer;
             }
         }
-        return answer;
+        return 0;
     }
 
     static class Person {
         int id;
-        int priority;
-
-        public Person(int id, int priority) {
+        int score;
+        public Person(int id, int score) {
             this.id = id;
-            this.priority = priority;
+            this.score = score;
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(solution(n, m, arr));
     }
 }

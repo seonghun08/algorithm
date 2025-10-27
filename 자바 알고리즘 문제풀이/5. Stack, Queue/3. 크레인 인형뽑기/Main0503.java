@@ -38,4 +38,26 @@ public class Main0503 {
         }
         return answer;
     }
+
+    public static int solution2(int[][] board, int[] moves) {
+        Stack<Integer> stack = new Stack<>();
+        int size = board.length;
+        int answer = 0;
+        for (int i : moves) {
+            int idx = i - 1;
+            for (int j = 0; j < size; j++) {
+                if (board[j][idx] != 0) {
+                    if (!stack.isEmpty() && stack.peek() == board[j][idx]) {
+                        stack.pop();
+                        answer += 2;
+                    } else {
+                        stack.add(board[j][idx]);
+                    }
+                    board[j][idx] = 0;
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
 }

@@ -17,10 +17,10 @@ public class Main0504 {
                 int rt = stack.pop();
                 int lt = stack.pop();
                 switch (ch) {
-                    case '+': stack.push(rt + lt); break;
-                    case '-': stack.push(rt - lt); break;
-                    case '*': stack.push(rt * lt); break;
-                    case '/': stack.push(rt / lt);
+                    case '+': stack.push(lt + rt); break;
+                    case '-': stack.push(lt - rt); break;
+                    case '*': stack.push(lt * rt); break;
+                    case '/': stack.push(lt / rt);
                 }
             }
         }

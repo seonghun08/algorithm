@@ -36,4 +36,17 @@ public class Main0507 {
         }
         return "YES";
     }
+
+    public static String solution3(String s1, String s2) {
+        Queue<Character> q = new LinkedList<>();
+        for (char ch : s1.toCharArray()) {
+            q.offer(ch);
+        }
+        for (char ch : s2.toCharArray()) {
+            if (q.contains(ch) && q.poll() != ch) {
+                return "NO";
+            }
+        }
+        return q.isEmpty() ? "YES" : "NO";
+    }
 }

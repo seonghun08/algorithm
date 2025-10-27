@@ -23,4 +23,21 @@ public class Main0505 {
         }
         return answer;
     }
+
+    public static int solution2(String s) {
+        Stack<Character> stack = new Stack<>();
+        int answer = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.add(s.charAt(i));
+            } else if (s.charAt(i - 1) == '(' && s.charAt(i) == ')') {
+                stack.pop();
+                answer += stack.size();
+            } else {
+                stack.pop();
+                answer++;
+            }
+        }
+        return answer;
+    }
 }
