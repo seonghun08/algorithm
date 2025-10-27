@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main0403 {
     public static void main(String[] args) {
@@ -18,16 +15,16 @@ public class Main0403 {
     }
 
     public static List<Integer> solution(int n, int k, int[] arr) {
-        List<Integer> answer = new ArrayList<>();
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int lt = 0, rt = k - 1;
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
 
-        for (int i = lt; i <= rt; i++) {
+        for (int i = 0; i < k; i++) {
             map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
         }
-        answer.add(map.keySet().size());
+        list.add(map.size());
 
-        while (++rt < n) {
+        int lt = 0;
+        for (int rt = k; rt < n; rt++) {
             if (map.get(arr[lt]) == 1) {
                 map.remove(arr[lt]);
             } else {
@@ -35,9 +32,8 @@ public class Main0403 {
             }
             lt++;
             map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
-            answer.add(map.keySet().size());
+            list.add(map.size());
         }
-
-        return answer;
+        return list;
     }
 }

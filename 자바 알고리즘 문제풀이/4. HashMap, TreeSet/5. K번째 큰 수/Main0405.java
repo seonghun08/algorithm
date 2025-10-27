@@ -13,17 +13,17 @@ public class Main0405 {
     }
 
     public static int solution(int n, int k, int[] arr) {
-        TreeSet<Integer> set = new TreeSet<>((a, b) -> b - a);
+        TreeSet<Integer> sums = new TreeSet<>(Comparator.reverseOrder());
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 for (int t = j + 1; t < n; t++) {
-                    set.add(arr[i] + arr[j] + arr[t]);
+                    sums.add(arr[i] + arr[j] + arr[t]);
                 }
             }
         }
-        int cnt = 0;
-        for (int a : set) {
-            if (++cnt == k) return a;
+        int rank = 0;
+        for (int sum : sums) {
+            if (++rank == k) return sum;
         }
         return -1;
     }

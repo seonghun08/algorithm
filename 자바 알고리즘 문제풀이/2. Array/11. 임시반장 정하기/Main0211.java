@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main0211 {
     public static void main(String[] args) {
@@ -6,18 +6,21 @@ public class Main0211 {
         int n = sc.nextInt();
         int[][] arr = new int[n][5];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < 5; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
-        System.out.println(solution(arr));
+        int answer = solution(n, arr);
+        System.out.print(answer);
     }
 
-    public static int solution(int[][] arr) {
-        int answer = 0, max = Integer.MIN_VALUE;
-        for (int i = 0; i < arr.length; i++) {
+    public static int solution(int n, int[][] arr) {
+        int answer = 0;
+        int max = 0;
+        for (int i = 0; i < n; i++) {
             int cnt = 0;
-            for (int j = 0; j < arr.length; j++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) continue;
                 for (int k = 0; k < 5; k++) {
                     if (arr[i][k] == arr[j][k]) {
                         cnt++;
@@ -25,11 +28,12 @@ public class Main0211 {
                     }
                 }
             }
-            if (max < cnt) {
+            if (cnt == n) return i + 1;
+            if (cnt > max) {
+                answer = i;
                 max = cnt;
-                answer = i + 1;
             }
         }
-        return answer;
+        return answer + 1;
     }
 }

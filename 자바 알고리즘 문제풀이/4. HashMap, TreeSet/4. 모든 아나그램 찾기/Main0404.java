@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main0404 {
@@ -10,6 +11,46 @@ public class Main0404 {
     }
 
     public static int solution(String s, String t) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            getOrDefault(map, c);
+        }
+
+        Map<Character, Integer> ana = new HashMap<>();
+        for (int i = 0; i < t.length(); i++) {
+            getOrDefault(ana, s.charAt(i));
+        }
+
+        int answer = isAnagram(map, ana) ? 1 : 0;
+        int lt = 0;
+        for (int rt = t.length(); rt < s.length(); rt++) {
+            ana.put(s.charAt(lt), ana.get(s.charAt(lt)) - 1);
+            getOrDefault(ana, s.charAt(rt));
+            lt++;
+            if (isAnagram(map, ana)) answer++;
+        }
+        return answer;
+    }
+
+    public static void getOrDefault(
+            Map<Character, Integer> map,
+            char ch
+    ) {
+        map.put(ch, map.getOrDefault(ch, 0) + 1);
+    }
+
+    public static boolean isAnagram(
+            Map<Character, Integer> map,
+            Map<Character, Integer> ana
+    ) {
+        for (char ch : map.keySet()) {
+            if (!ana.containsKey(ch)) return false;
+            if (map.get(ch) != ana.get(ch)) return false;
+        }
+        return true;
+    }
+
+    public static int solution2(String s, String t) {
         int answer = 0;
         int lt = 0, rt = t.length() - 1;
 
