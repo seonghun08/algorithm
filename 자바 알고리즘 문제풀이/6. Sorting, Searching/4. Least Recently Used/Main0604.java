@@ -14,6 +14,25 @@ public class Main0604 {
         }
     }
 
+    public static int[] solution(int s, int n, int[] arr) {
+        int[] cache = new int[s];
+        for (int i = 0; i < n; i++) {
+            int pos = -1;
+            for (int j = 0; j < s; j++) {
+                if (arr[i] == cache[j]) {
+                    pos = j;
+                    break;
+                }
+            }
+            pos = pos == -1 ? s - 1 : pos;
+            for (int j = pos; j >= 1; j--) {
+                cache[j] = cache[j - 1];
+            }
+            cache[0] = arr[i];
+        }
+        return cache;
+    }
+
     public static int[] solution(int size, int[] arr) {
         int[] cache = new int[size];
         for (int n : arr) {
