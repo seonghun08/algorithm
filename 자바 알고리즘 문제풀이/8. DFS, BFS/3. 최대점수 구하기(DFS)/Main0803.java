@@ -1,32 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main0803 {
 
     static int n, m;
-    static int max;
-
-    public static void dfs(int len, int scoreSum, int timeSum, int[][] arr) {
-        if (timeSum > m) {
-            return;
-        }
-        if (len == n) {
-            max = Math.max(max, scoreSum);
-        } else {
-            dfs(len + 1, scoreSum + arr[len][0], timeSum + arr[len][1], arr);
-            dfs(len + 1, scoreSum, timeSum, arr);
-        }
-    }
+    static List<Problem> pbs = new ArrayList<>();
+    static int max = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
-        int[][] arr = new int[n][2]; // [n][0]:score, [n][1]:time
+        n = sc.nextInt(); // 문제 개수
+        m = sc.nextInt(); // 제한 시간
+
+        pbs = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            arr[i][0] = sc.nextInt();
-            arr[i][1] = sc.nextInt();
+            int score = sc.nextInt();
+            int time = sc.nextInt();
+            pbs.add(new Problem(score, time));
         }
-        dfs(0, 0, 0, arr);
-        System.out.print(max);
+
+        dfs(0, 0, 0);
+        System.out.println(max);
+    }
+
+    public static void dfs(int depth, int scoreSum, int timeSum) {
+        if (m > timeSum) return;
+        if (depth == n) {
+            max = Math.max(max, scoreSum);
+        } else {
+            dfs(depth + 1, scoreSum + pbs.get(depth).score, timeSum + pbs.get(depth).time);
+            dfs(depth + 1, scoreSum, timeSum);
+        }
+    }
+
+    static class Problem {
+        int score;
+        int time;
+        public Problem(int score, int time) {
+            this.score = score;
+            this.time = time;
+        }
     }
 }
