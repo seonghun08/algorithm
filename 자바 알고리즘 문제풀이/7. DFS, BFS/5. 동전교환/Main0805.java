@@ -1,46 +1,69 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main0805 {
 
     static int n, m;
-    static Integer[] coins;
+    static int[] coins;
     static int answer = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        coins = new Integer[n];
+        coins = new int[n];
         for (int i = 0; i < n; i++) {
             coins[i] = sc.nextInt();
         }
         m = sc.nextInt();
 
         // 1. dfs 풀이
-        Arrays.sort(coins, Collections.reverseOrder());
+        Arrays.sort(coins); // 정렬 후 가장 큰 동전부터 돌려야 시간 초과 발생 X
         dfs(0, 0);
         System.out.println(answer);
 
-        // 2. dp 풀이
+        // 2. bfs 풀이
+        answer = bfs(coins, m);
+        System.out.println(answer);
+
+        // 3. dp 풀이
         answer = dp();
         System.out.println(answer);
     }
 
     public static void dfs(int size, int sum) {
-        if (size >= answer) {
-            return;
-        }
-        if (sum > m) {
-            return;
-        }
+        if (size >= answer) return;
+        if (sum > m) return;
         if (sum == m) {
             answer = Math.min(answer, size);
         } else {
-            for (int i = 0; i < n; i++) {
+            for (int i = n - 1; i >= 0; i--) { // 정렬 후 역순 (큰 동전부터)
                 dfs(size + 1, sum + coins[i]);
             }
         }
+    }
+
+    public static int bfs(int[] arr, int m) {
+        int answer = 0;
+        Queue<Integer> q = new LinkedList<>();
+        boolean[] visited = new boolean[m + 1];
+        q.offer(0);
+        while (!q.isEmpty()) {
+            int len = q.size();
+            for (int i = 0; i < len; i++) {
+                int n = q.poll();
+                if (n == m) {
+                    return answer;
+                }
+                for (int x = 0; x < arr.length; x++) {
+                    int nx = n + arr[x];
+                    if (nx <= m && !visited[nx]) {
+                        visited[nx] = true;
+                        q.offer(nx);
+                    }
+                }
+            }
+            answer++;
+        }
+        return -1;
     }
 
     public static int dp() {

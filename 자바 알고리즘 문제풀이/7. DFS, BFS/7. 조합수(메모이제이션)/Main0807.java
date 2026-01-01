@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main0807 {
 
     static int[][] dy = new int[34][34];
 
