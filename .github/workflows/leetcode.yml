@@ -1,50 +1,56 @@
 name: Move LeetCode Solutions
 
 on:
-  workflow_dispatch:  # 수동 실행 버튼
+  workflow_dispatch:  # 수동 실행 옵션 유지
   push:
     paths:
-      - '[0-9][0-9][0-9][0-9]-*/**'  # 숫자 4자리로 시작하는 폴더가 생길 때만 실행
+      - '[0-9][0-9][0-9][0-9]-*/**'  # LeetHub가 생성하는 폴더 패턴 (예: 0020-valid-parentheses)
 
 jobs:
   move-files:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 전체 히스토리를 가져와야 pull/push 시 충돌이 적습니다.
+          fetch-depth: 2  # 최근 커밋 기록을 가져오기 위해 설정
 
       - name: Move LeetCode solutions
         run: |
+          # 디버깅을 위한 현재 디렉토리 내용 출력
+          echo "Current directory contents:"
+          ls -la
+          
+          # LeetCode 폴더가 없다면 생성
           mkdir -p LeetCode
+          
+          # 변경된 파일 목록 확인
+          echo "Changed files in this push:"
+          git diff --name-only HEAD^ HEAD
+          
+          # LeetHub가 생성한 폴더들을 LeetCode 폴더로 이동
           found=0
-          # 루트 디렉토리에서 숫자 4자리 폴더 탐색
           for d in [0-9][0-9][0-9][0-9]-*; do
             if [ -d "$d" ]; then
               echo "Moving directory: $d"
-              rm -rf "LeetCode/$d"
               mv "$d" "LeetCode/" && found=1
             fi
           done
+          
+          # 이동할 폴더를 찾지 못했을 경우에도 오류로 처리하지 않음
+          if [ $found -eq 0 ]; then
+            echo "No matching directories found to move"
+          fi
 
       - name: Commit & Push changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          git add -A
-          # 변경사항이 있는지 확인 (staged된 파일이 있는지 체크)
-          if ! git diff --cached --exit-code --quiet; then
-            git commit -m "chore: Move LeetCode solutions to LeetCode folder [skip ci]"
-            
-            # 여기서 충돌 방지를 위해 최신 코드를 가져오며 합칩니다.
-            git pull --rebase origin main
-            
-            git push origin main
+          # 변경사항이 있는지 확인
+          if git status --porcelain | grep .; then
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+            git add -A
+            git commit -m "chore: Move LeetCode solutions to LeetCode folder"
+            git push
           else
             echo "No changes to commit"
           fi
