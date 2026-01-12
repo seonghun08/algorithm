@@ -6,7 +6,7 @@ public class Main {
 
     }
 
-    public static int solution(int n) {
+    public static int solution(int[][] arr) {
         int answer = 0;
 
         return answer;
