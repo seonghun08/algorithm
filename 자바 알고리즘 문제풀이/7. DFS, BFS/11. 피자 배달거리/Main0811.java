@@ -5,48 +5,61 @@ public class Main0811 {
     private int m;
     private List<Point> houses = new ArrayList<>();
     private List<Point> pizzas = new ArrayList<>();
-    private int[] combi;
+    private int houseSize, pizzaSize;
+    private int[][] distMatrix;
     private int answer = Integer.MAX_VALUE;
 
-    public int solution(int m, int[][] map) {
+    public int solution(int m, int[][] arr) {
         this.m = m;
-        this.combi = new int[m];
-        int n = map.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                switch(map[i][j]) {
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                switch (arr[i][j]) {
                     case 1: houses.add(new Point(i, j)); break;
                     case 2: pizzas.add(new Point(i, j));
                 }
             }
         }
-        dfs(0, 0);
+
+        houseSize = houses.size();
+        pizzaSize = pizzas.size();
+        distMatrix = new int[houseSize][pizzaSize];
+
+        for (int i = 0; i < houseSize; i++) {
+            Point h = houses.get(i);
+            for (int j = 0; j < pizzaSize; j++) {
+                Point p = pizzas.get(j);
+                distMatrix[i][j] = Math.abs(h.x - p.x) + Math.abs(h.y - p.y);
+            }
+        }
+
+        dfs(0, 0, new int[m]);
         return answer;
     }
 
-    private void dfs(int start, int count) {
+    private void dfs(int start, int count, int[] combi) {
         if (count == m) {
-            calculateDistance(); // M개의 피자집을 모두 선택 후, 최소 거리 계산
+            findMinDist(combi);
         } else {
-            for (int i = start; i < pizzas.size(); i++) {
-                combi[count] = i; // i번째 피자집 선택
-                dfs(i + 1, count + 1); // 다음 피자집 선택 (중복 방지를 위해 i + 1)
+            for (int i = start; i < pizzaSize; i++) {
+                combi[count] = i;
+                dfs(i + 1, count + 1, combi);
             }
         }
     }
 
-    private void calculateDistance() {
-        int sum = 0;
-        for (Point h : houses) {
-            int minDist = Integer.MAX_VALUE;
-            for (int idx : combi) { // 선택된 M개의 피자집 중 가장 가까운 곳 찾기
-                Point p = pizzas.get(idx);
-                int dist = Math.abs(h.x - p.x) + Math.abs(h.y - p.y);
-                minDist = Math.min(minDist, dist);
+    private void findMinDist(int[] combi) {
+        int totalSum = 0;
+        for (int hIdx = 0; hIdx < houseSize; hIdx++) {
+            int min = Integer.MAX_VALUE;
+            for (int pIdx : combi) {
+                int dist = distMatrix[hIdx][pIdx];
+                min = Math.min(min, dist);
             }
-            sum += minDist;
+            totalSum += min;
+            if (totalSum >= answer) return;
         }
-        answer = Math.min(answer, sum); // 도시의 전체 거리 중 최솟값 갱신
+        answer = Math.min(answer, totalSum);
     }
 
     static class Point {
@@ -69,6 +82,6 @@ public class Main0811 {
             }
         }
         int answer = main.solution(m, arr);
-        System.out.print(answer);
+        System.out.println(answer);
     }
 }
