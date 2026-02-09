@@ -43,11 +43,10 @@ public class Dijkstra {
         int start = 1; // 시작 노드
 
         List<List<Node>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
         }
 
-        // 임의의 그래프 데이터 (시작, 도착, 가중치)
         graph.get(1).add(new Node(2, 2));
         graph.get(1).add(new Node(3, 5));
         graph.get(1).add(new Node(4, 1));
@@ -65,7 +64,6 @@ public class Dijkstra {
     }
 
     static class Node {
-
         int index;
         int distance;
 
