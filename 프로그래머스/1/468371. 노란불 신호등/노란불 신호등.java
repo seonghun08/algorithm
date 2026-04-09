@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
     public int solution(int[][] signals) {
-		int size = signals.length;
+        int size = signals.length;
 		int[] cycles = new int[size];
 		int maxTime = 1;
 		
@@ -10,7 +10,6 @@ class Solution {
 			cycles[i] = signals[i][0] + signals[i][1] + signals[i][2];
 			maxTime = lcm(maxTime, cycles[i]);
 		}
-		
 		for (int time = 1; time < maxTime; time++) {
 			boolean isYellow = true;
 			for (int i = 0; i < size; i++) {
@@ -24,7 +23,7 @@ class Solution {
 				}
 			}
 			if (isYellow) return time;
-		}
+		}		
         return -1;
     }
 	
