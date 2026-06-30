@@ -2,35 +2,36 @@ import java.util.*;
 
 class Solution {
     
-    private int n, k, max = 0;
-    private int[][] node;
+    static final int[] types = { 1, 2, 3 }; // A(1), B(2), C(3)
+    int n, k, max = 0;
+    int[][] node;
     
     public int solution(int n, int infection, int[][] edges, int k) {
-        this.n = n;
-        this.k = k;
-        this.node = new int[n + 1][n + 1];
-        for (int[] e : edges) {
-            int x = e[0];
-            int y = e[1];
-            int type = e[2]; // A(1), B(2), C(3)
+        this.n = n; // 배양체 개수
+        this.k = k; // 최대 행동 수
+        this.node = new int[n + 1][n + 1]; // 간선
+        for (int[] edge : edges) {
+            int x = edge[0];
+            int y = edge[1];
+            int type = edge[2];
             node[x][y] = type;
             node[y][x] = type;
         }
         boolean[] infected = new boolean[n + 1];
-        infected[infection] = true; // 최초 감염 배양체
+        infected[infection] = true; // 최초 감염체 삽입
         dfs(0, infected);
-        return max;
+        return this.max;
     }
     
     private void dfs(int depth, boolean[] infected) {
         if (depth == k) {
-            max = Math.max(max, count(infected));
+            max = Math.max(count(infected), max);
         } else {
-            for (int type = 1; type <= 3; type++) {
+            for (int type : types) {
                 boolean[] next = Arrays.copyOf(infected, infected.length);
-                bfs(type, next); // 감염 전파 spread
+                bfs(type, next);
                 dfs(depth + 1, next);
-            }   
+            }
         }
     }
     
@@ -40,8 +41,9 @@ class Solution {
             if (infected[i]) q.offer(i);
         }
         while (!q.isEmpty()) {
-            int cur = q.poll();
+            int cur = q.poll(); // 감염체
             for (int nx = 1; nx <= n; nx++) {
+                // 해당 노드의 파이프가 열려있고, 감염되지 않은 경우 전파
                 if (node[cur][nx] == type && !infected[nx]) {
                     infected[nx] = true;
                     q.offer(nx);
@@ -50,9 +52,9 @@ class Solution {
         }
     }
     
-    private int count(boolean[] infected) {
+    private int count(boolean[] bools) {
         int cnt = 0;
-        for (boolean bool : infected) {
+        for (boolean bool : bools) {
             if (bool) cnt++;
         }
         return cnt;
