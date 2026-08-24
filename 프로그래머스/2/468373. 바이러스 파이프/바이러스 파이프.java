@@ -27,14 +27,14 @@ class Solution {
             answer = Math.max(answer, count(infected));
         } else {
             for (int type = 1; type <= 3; type++) {
-                boolean[] next = Arrays.copyOf(infected, infected.length);
-                bfs(type, next); // spread
-                dfs(depth + 1, next);
+                boolean[] copy = Arrays.copyOf(infected, infected.length);
+                bfs(copy, type);
+                dfs(depth + 1, copy);
             }
         }
     }
     
-    private void bfs(int type, boolean[] infected) {
+    private void bfs(boolean[] infected, int type) {
         Deque<Integer> q = new LinkedList<>();
         for (int i = 1; i < infected.length; i++) {
             if (infected[i]) q.offer(i);
