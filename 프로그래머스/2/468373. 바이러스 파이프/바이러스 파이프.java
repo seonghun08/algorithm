@@ -4,8 +4,10 @@ class Solution {
     
     int n, k, answer = 0;
     int[][] node;
-    
-    public int solution(int n, int infection, int[][] edges, int k) {
+
+    public int solution(
+        int n, int infection, int[][] edges, int k
+    ) {
         this.n = n;
         this.k = k;
         this.node = new int[n + 1][n + 1];
@@ -17,7 +19,7 @@ class Solution {
             node[y][x] = type;
         }
         boolean[] infected = new boolean[n + 1];
-        infected[infection] = true;
+        infected[infection] = true; // 최초 감염
         dfs(0, infected);
         return this.answer;
     }
@@ -27,21 +29,21 @@ class Solution {
             answer = Math.max(answer, count(infected));
         } else {
             for (int type = 1; type <= 3; type++) {
-                boolean[] copy = Arrays.copyOf(infected, infected.length);
-                bfs(copy, type);
-                dfs(depth + 1, copy);
+                boolean[] next = Arrays.copyOf(infected, infected.length);
+                bfs(type, next);
+                dfs(depth + 1, next);
             }
         }
     }
     
-    private void bfs(boolean[] infected, int type) {
-        Deque<Integer> q = new LinkedList<>();
+    private void bfs(int type, boolean[] infected) {
+        Deque<Integer> q = new ArrayDeque<>();
         for (int i = 1; i < infected.length; i++) {
             if (infected[i]) q.offer(i);
         }
         while (!q.isEmpty()) {
             int cur = q.poll();
-            for (int nx = 1; nx <= n; nx++) {
+            for (int nx = 1; nx < infected.length; nx++) {
                 if (node[cur][nx] == type && !infected[nx]) {
                     infected[nx] = true;
                     q.offer(nx);
